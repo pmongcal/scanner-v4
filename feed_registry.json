@@ -1,0 +1,312 @@
+{
+  "feeds": [
+    {
+      "name": "36kr",
+      "category": "chinese_primary",
+      "url": "https://36kr.com/feed",
+      "language": "zh",
+      "priority": 1,
+      "fallback_url": "https://news.google.com/rss/search?q=site:36kr.com+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans"
+    },
+    {
+      "name": "Qbitai",
+      "category": "chinese_primary",
+      "url": "https://www.qbitai.com/feed",
+      "language": "zh",
+      "priority": 1
+    },
+    {
+      "name": "Jiqizhixin",
+      "category": "chinese_primary",
+      "url": "https://news.google.com/rss/search?q=site:jiqizhixin.com+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "language": "zh",
+      "priority": 1,
+      "fallback_url": "https://news.google.com/rss/search?q=%E6%9C%BA%E5%99%A8%E4%B9%8B%E5%BF%83+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans"
+    },
+    {
+      "name": "Huxiu",
+      "category": "chinese_tech",
+      "url": "https://news.google.com/rss/search?q=site:huxiu.com+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "language": "zh",
+      "priority": 1,
+      "fallback_url": "https://feedx.net/rss/huxiu.xml"
+    },
+    {
+      "name": "TMTPost",
+      "category": "chinese_tech",
+      "url": "https://www.tmtpost.com/rss.xml",
+      "language": "zh",
+      "priority": 1
+    },
+    {
+      "name": "InfoQ China",
+      "category": "chinese_tech",
+      "url": "https://www.infoq.cn/feed",
+      "language": "zh",
+      "priority": 2
+    },
+    {
+      "name": "The Paper Tech",
+      "category": "chinese_tech",
+      "url": "https://news.google.com/rss/search?q=site:thepaper.cn+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "language": "zh",
+      "priority": 2,
+      "fallback_url": "https://feedx.net/rss/thepaper.xml"
+    },
+    {
+      "name": "21Jingji",
+      "category": "chinese_business",
+      "url": "https://news.google.com/rss/search?q=site:21jingji.com+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "language": "zh",
+      "priority": 2
+    },
+    {
+      "name": "Hacker News",
+      "category": "english_primary",
+      "url": "https://news.ycombinator.com/rss",
+      "language": "en",
+      "priority": 1,
+      "fallback_url": "https://news.google.com/rss/search?q=site:news.ycombinator.com+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Search Engine Land",
+      "category": "english_primary",
+      "url": "https://news.google.com/rss/search?q=site:searchengineland.com+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "language": "en",
+      "priority": 1
+    },
+    {
+      "name": "Mumbrella",
+      "category": "regional",
+      "url": "https://mumbrella.com.au/feed",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "Marketing Week",
+      "category": "regional",
+      "url": "https://news.google.com/rss/search?q=site:marketingweek.com+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "The Drum",
+      "category": "regional",
+      "url": "https://news.google.com/rss/search?q=site:thedrum.com+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "TechCrunch",
+      "category": "tier1_tech",
+      "url": "https://techcrunch.com/feed/",
+      "language": "en",
+      "priority": 1
+    },
+    {
+      "name": "TechCrunch AI",
+      "category": "tier1_tech",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "language": "en",
+      "priority": 1,
+      "fallback_url": "https://news.google.com/rss/search?q=site:techcrunch.com+AI+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "The Verge",
+      "category": "tier1_tech",
+      "url": "https://www.theverge.com/rss/index.xml",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "Ars Technica AI",
+      "category": "tier1_tech",
+      "url": "https://arstechnica.com/ai/feed/",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "Wired",
+      "category": "tier1_tech",
+      "url": "https://www.wired.com/feed/rss",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "MIT Technology Review",
+      "category": "tier1_tech",
+      "url": "https://www.technologyreview.com/feed/",
+      "language": "en",
+      "priority": 1
+    },
+    {
+      "name": "VentureBeat AI",
+      "category": "ai_deep",
+      "url": "https://venturebeat.com/category/ai/feed/",
+      "language": "en",
+      "priority": 1,
+      "fallback_url": "https://news.google.com/rss/search?q=site:venturebeat.com+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Import AI",
+      "category": "ai_deep",
+      "url": "https://importai.substack.com/feed",
+      "language": "en",
+      "priority": 1,
+      "fallback_url": "https://news.google.com/rss/search?q=site:importai.substack.com+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "AI Snake Oil",
+      "category": "ai_deep",
+      "url": "https://news.google.com/rss/search?q=site:normaltech.ai+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "language": "en",
+      "priority": 1
+    },
+    {
+      "name": "Semafor Tech",
+      "category": "business",
+      "url": "https://semafor.com/rss.xml",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "Harvard Business Review",
+      "category": "business",
+      "url": "http://feeds.harvardbusiness.org/harvardbusiness",
+      "language": "en",
+      "priority": 2,
+      "link_base": "https://hbr.org"
+    },
+    {
+      "name": "Bloomberg Technology",
+      "category": "business",
+      "url": "https://feeds.bloomberg.com/technology/news.rss",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "Adweek",
+      "category": "marketing_trade",
+      "url": "https://www.adweek.com/feed/",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "Digiday",
+      "category": "marketing_trade",
+      "url": "https://digiday.com/feed/",
+      "language": "en",
+      "priority": 1
+    },
+    {
+      "name": "MarTech",
+      "category": "marketing_trade",
+      "url": "https://martech.org/feed",
+      "language": "en",
+      "priority": 1,
+      "fallback_url": "https://news.google.com/rss/search?q=site:martech.org+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Mi3 Australia",
+      "category": "regional",
+      "url": "https://news.google.com/rss/search?q=site:mi-3.com.au+when:7d&hl=en-AU&gl=AU&ceid=AU:en",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "r/digital_marketing",
+      "category": "social_signal",
+      "url": "https://www.reddit.com/r/digital_marketing/top.rss?t=day",
+      "language": "en",
+      "priority": 2,
+      "fallback_url": "https://news.google.com/rss/search?q=site:reddit.com/r/digital_marketing+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "r/bigseo",
+      "category": "social_signal",
+      "url": "https://www.reddit.com/r/bigseo/top.rss?t=day",
+      "language": "en",
+      "priority": 2,
+      "fallback_url": "https://news.google.com/rss/search?q=site:reddit.com/r/bigseo+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "r/PPC",
+      "category": "social_signal",
+      "url": "https://www.reddit.com/r/PPC/top.rss?t=day",
+      "language": "en",
+      "priority": 2,
+      "fallback_url": "https://news.google.com/rss/search?q=site:reddit.com/r/PPC+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "r/MachineLearning",
+      "category": "social_signal",
+      "url": "https://www.reddit.com/r/MachineLearning/top.rss?t=day",
+      "language": "en",
+      "priority": 2,
+      "fallback_url": "https://news.google.com/rss/search?q=site:reddit.com/r/MachineLearning+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "r/OpenAI",
+      "category": "social_signal",
+      "url": "https://www.reddit.com/r/OpenAI/top.rss?t=day",
+      "language": "en",
+      "priority": 2,
+      "fallback_url": "https://news.google.com/rss/search?q=site:reddit.com+%22r/OpenAI%22+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "fallback_urls": [
+        "https://old.reddit.com/r/OpenAI/top/.rss?t=day"
+      ]
+    },
+    {
+      "name": "r/PromptEngineering",
+      "category": "social_signal",
+      "url": "https://www.reddit.com/r/PromptEngineering/top.rss?t=day",
+      "language": "en",
+      "priority": 2,
+      "fallback_url": "https://news.google.com/rss/search?q=site:reddit.com/r/PromptEngineering+when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "r/artificial",
+      "category": "social_signal",
+      "url": "https://www.reddit.com/r/artificial/top.rss?t=day",
+      "language": "en",
+      "priority": 2,
+      "fallback_url": "https://news.google.com/rss/search?q=site:reddit.com+%22r/artificial%22+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "fallback_urls": [
+        "https://old.reddit.com/r/artificial/top/.rss?t=day"
+      ]
+    },
+    {
+      "name": "r/LocalLLaMA",
+      "category": "social_signal",
+      "url": "https://www.reddit.com/r/LocalLLaMA/top.rss?t=day",
+      "language": "en",
+      "priority": 2,
+      "fallback_url": "https://news.google.com/rss/search?q=site:reddit.com+%22r/LocalLLaMA%22+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "fallback_urls": [
+        "https://old.reddit.com/r/LocalLLaMA/top/.rss?t=day"
+      ]
+    },
+    {
+      "name": "Google News — Business AU",
+      "category": "google_news_topic",
+      "url": "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGx6TVdZU0JXVnVMVWRDR2dKUVNDZ0FQAQ?hl=en-AU&gl=AU&ceid=AU:en",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "Google News — Technology AU",
+      "category": "google_news_topic",
+      "url": "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKUVNDZ0FQAQ?hl=en-AU&gl=AU&ceid=AU:en",
+      "language": "en",
+      "priority": 2
+    },
+    {
+      "name": "Google News — Science AU",
+      "category": "google_news_topic",
+      "url": "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKUVNDZ0FQAQ?hl=en-AU&gl=AU&ceid=AU:en",
+      "language": "en",
+      "priority": 2
+    }
+  ],
+  "retention_hours": 96
+}
