@@ -1,0 +1,987 @@
+{
+  "generated_at": "2026-10-13T00:33:37.515206+00:00",
+  "counts": {
+    "total": 1813,
+    "new": 20
+  },
+  "feed_status": {
+    "The Paper Tech": {
+      "ok": true,
+      "count": 100,
+      "raw_count": 100,
+      "cap": 200,
+      "truncated": 0,
+      "new": 1,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 100 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "chinese_tech",
+      "state": "working",
+      "newest_item": "2026-10-12T09:34:00+00:00"
+    },
+    "Jiqizhixin": {
+      "ok": true,
+      "count": 22,
+      "raw_count": 22,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: returned 0 items",
+        "backup1: 22 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "chinese_primary",
+      "state": "working",
+      "newest_item": "2026-10-12T18:59:41+00:00"
+    },
+    "21Jingji": {
+      "ok": true,
+      "count": 100,
+      "raw_count": 100,
+      "cap": 200,
+      "truncated": 0,
+      "new": 1,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 100 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "chinese_business",
+      "state": "working",
+      "newest_item": "2026-10-12T15:14:40+00:00"
+    },
+    "Huxiu": {
+      "ok": true,
+      "count": 100,
+      "raw_count": 100,
+      "cap": 200,
+      "truncated": 0,
+      "new": 1,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 100 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "chinese_tech",
+      "state": "working",
+      "newest_item": "2026-10-12T23:19:14+00:00"
+    },
+    "Mumbrella": {
+      "ok": true,
+      "count": 20,
+      "raw_count": 20,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 20 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "regional",
+      "state": "working",
+      "newest_item": "2026-10-13T00:30:57+00:00"
+    },
+    "Search Engine Land": {
+      "ok": true,
+      "count": 80,
+      "raw_count": 80,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 80 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "english_primary",
+      "state": "working",
+      "newest_item": "2026-10-12T21:50:31+00:00"
+    },
+    "Marketing Week": {
+      "ok": true,
+      "count": 44,
+      "raw_count": 44,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 44 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "regional",
+      "state": "working",
+      "newest_item": "2026-10-12T10:22:37+00:00"
+    },
+    "TechCrunch AI": {
+      "ok": true,
+      "count": 20,
+      "raw_count": 20,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 20 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "tier1_tech",
+      "state": "working",
+      "newest_item": "2026-10-12T17:56:56+00:00"
+    },
+    "TechCrunch": {
+      "ok": true,
+      "count": 20,
+      "raw_count": 20,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 20 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "tier1_tech",
+      "state": "working",
+      "newest_item": "2026-10-12T17:56:56+00:00"
+    },
+    "The Verge": {
+      "ok": true,
+      "count": 10,
+      "raw_count": 10,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 10 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "tier1_tech",
+      "state": "working",
+      "newest_item": "2026-10-12T17:20:57-04:00"
+    },
+    "The Drum": {
+      "ok": true,
+      "count": 77,
+      "raw_count": 77,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 77 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "regional",
+      "state": "working",
+      "newest_item": "2026-10-12T18:23:29+00:00"
+    },
+    "Wired": {
+      "ok": true,
+      "count": 50,
+      "raw_count": 50,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 50 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "tier1_tech",
+      "state": "working",
+      "newest_item": "2026-10-12T20:13:28+00:00"
+    },
+    "Ars Technica AI": {
+      "ok": true,
+      "count": 20,
+      "raw_count": 20,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 20 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "tier1_tech",
+      "state": "working",
+      "newest_item": "2026-10-12T20:59:50+00:00"
+    },
+    "MIT Technology Review": {
+      "ok": true,
+      "count": 10,
+      "raw_count": 10,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 10 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "tier1_tech",
+      "state": "working",
+      "newest_item": "2026-10-12T12:10:00+00:00"
+    },
+    "Hacker News": {
+      "ok": true,
+      "count": 100,
+      "raw_count": 100,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: fetch_error: 419 Client Error:  for url: https://news.ycombinator.com/rss",
+        "backup1: 100 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "english_primary",
+      "state": "working",
+      "newest_item": "2026-10-12T21:40:56+00:00"
+    },
+    "AI Snake Oil": {
+      "ok": true,
+      "count": 0,
+      "raw_count": 0,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: returned 0 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "ai_deep",
+      "state": "empty",
+      "newest_item": null
+    },
+    "Import AI": {
+      "ok": true,
+      "count": 1,
+      "raw_count": 1,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: fetch_error: 403 Client Error: Forbidden for url: https://importai.substack.com/feed",
+        "backup1: 1 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "ai_deep",
+      "state": "working",
+      "newest_item": "2026-10-12T12:30:39+00:00"
+    },
+    "InfoQ China": {
+      "ok": true,
+      "count": 20,
+      "raw_count": 20,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 20 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "chinese_tech",
+      "state": "working",
+      "newest_item": "2026-10-12T17:19:27+00:00"
+    },
+    "36kr": {
+      "ok": true,
+      "count": 100,
+      "raw_count": 100,
+      "cap": 200,
+      "truncated": 0,
+      "new": 1,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: parse_error: SAXParseException('not well-formed (invalid token)') | http=200 type=text/html len=25361 starts='<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\" /> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" /> <link rel=\"icon\" hre'",
+        "backup1: 100 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "chinese_primary",
+      "state": "working",
+      "newest_item": "2026-10-12T08:56:08+00:00"
+    },
+    "Adweek": {
+      "ok": true,
+      "count": 10,
+      "raw_count": 10,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 10 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "marketing_trade",
+      "state": "working",
+      "newest_item": "2026-10-12T17:48:12+00:00"
+    },
+    "VentureBeat AI": {
+      "ok": true,
+      "count": 100,
+      "raw_count": 100,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: fetch_error: 429 Client Error: Too Many Requests for url: https://venturebeat.com/category/ai/feed/",
+        "backup1: 100 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "ai_deep",
+      "state": "working",
+      "newest_item": "2026-10-12T20:28:27+00:00"
+    },
+    "Qbitai": {
+      "ok": true,
+      "count": 10,
+      "raw_count": 10,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 10 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "chinese_primary",
+      "state": "working",
+      "newest_item": "2026-10-12T05:48:36+00:00"
+    },
+    "Bloomberg Technology": {
+      "ok": true,
+      "count": 20,
+      "raw_count": 20,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 20 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "business",
+      "state": "working",
+      "newest_item": "2026-10-12T23:23:43+00:00"
+    },
+    "Digiday": {
+      "ok": true,
+      "count": 15,
+      "raw_count": 15,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 15 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "marketing_trade",
+      "state": "working",
+      "newest_item": "2026-10-12T04:01:00+00:00"
+    },
+    "MarTech": {
+      "ok": true,
+      "count": 28,
+      "raw_count": 28,
+      "cap": 200,
+      "truncated": 0,
+      "new": 7,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: fetch_error: 429 Client Error: Too Many Requests for url: https://martech.org/feed",
+        "backup1: 28 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "marketing_trade",
+      "state": "working",
+      "newest_item": "2026-10-12T18:17:02+00:00"
+    },
+    "Mi3 Australia": {
+      "ok": true,
+      "count": 65,
+      "raw_count": 65,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 65 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "regional",
+      "state": "working",
+      "newest_item": "2026-10-12T23:42:33+00:00"
+    },
+    "Semafor Tech": {
+      "ok": true,
+      "count": 184,
+      "raw_count": 184,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 184 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "business",
+      "state": "working",
+      "newest_item": "2026-10-12T22:44:24+00:00"
+    },
+    "Harvard Business Review": {
+      "ok": true,
+      "count": 100,
+      "raw_count": 100,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 100 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "business",
+      "state": "working",
+      "newest_item": "2026-10-12T12:15:19+00:00"
+    },
+    "TMTPost": {
+      "ok": true,
+      "count": 17,
+      "raw_count": 17,
+      "cap": 200,
+      "truncated": 0,
+      "new": 2,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 17 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "chinese_tech",
+      "state": "working",
+      "newest_item": "2026-10-13T08:29:11+08:00"
+    },
+    "r/digital_marketing": {
+      "ok": true,
+      "count": 6,
+      "raw_count": 6,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 6 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "social_signal",
+      "state": "working",
+      "newest_item": "2026-10-12T18:16:56+00:00"
+    },
+    "Google News — Business AU": {
+      "ok": true,
+      "count": 70,
+      "raw_count": 70,
+      "cap": 200,
+      "truncated": 0,
+      "new": 3,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 70 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "google_news_topic",
+      "state": "working",
+      "newest_item": "2026-10-13T00:07:57+00:00"
+    },
+    "Google News — Technology AU": {
+      "ok": true,
+      "count": 70,
+      "raw_count": 70,
+      "cap": 200,
+      "truncated": 0,
+      "new": 3,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 70 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "google_news_topic",
+      "state": "working",
+      "newest_item": "2026-10-13T00:18:35+00:00"
+    },
+    "Google News — Science AU": {
+      "ok": true,
+      "count": 70,
+      "raw_count": 70,
+      "cap": 200,
+      "truncated": 0,
+      "new": 1,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: 70 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "google_news_topic",
+      "state": "working",
+      "newest_item": "2026-10-12T23:40:01+00:00"
+    },
+    "r/bigseo": {
+      "ok": true,
+      "count": 2,
+      "raw_count": 2,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: fetch_error: 429 Client Error: Too Many Requests for url: https://www.reddit.com/r/bigseo/top.rss?t=day",
+        "backup1: 2 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "social_signal",
+      "state": "working",
+      "newest_item": "2026-10-12T13:00:42+00:00"
+    },
+    "r/PPC": {
+      "ok": true,
+      "count": 50,
+      "raw_count": 50,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: fetch_error: 429 Client Error: Too Many Requests for url: https://www.reddit.com/r/PPC/top.rss?t=day",
+        "backup1: 50 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "social_signal",
+      "state": "working",
+      "newest_item": "2026-10-12T22:07:26+00:00"
+    },
+    "r/MachineLearning": {
+      "ok": true,
+      "count": 60,
+      "raw_count": 60,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: fetch_error: 429 Client Error: Too Many Requests for url: https://www.reddit.com/r/MachineLearning/top.rss?t=day",
+        "backup1: 60 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "social_signal",
+      "state": "working",
+      "newest_item": "2026-10-12T23:23:35+00:00"
+    },
+    "r/PromptEngineering": {
+      "ok": true,
+      "count": 54,
+      "raw_count": 54,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": true,
+      "attempts": [
+        "main: fetch_error: 429 Client Error: Too Many Requests for url: https://www.reddit.com/r/PromptEngineering/top.rss?t=day",
+        "backup1: 54 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "social_signal",
+      "state": "working",
+      "newest_item": "2026-10-12T20:15:40+00:00"
+    },
+    "r/OpenAI": {
+      "ok": true,
+      "count": 0,
+      "raw_count": 0,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: fetch_error: 429 Client Error: Too Many Requests for url: https://www.reddit.com/r/OpenAI/top.rss?t=day",
+        "backup1: parse_error: SAXParseException('not well-formed (invalid token)') | http=200 type=text/html; charset=utf-8 len=330641 starts='<!DOCTYPE html> <html lang=\"en-US\" class=\"theme-beta\" dir=\"ltr\" device=\"desktop\"> <head prefix=\"og: https://ogp.me/ns#\"> <title>Welcome t'",
+        "backup2: returned 0 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "social_signal",
+      "state": "empty",
+      "newest_item": null
+    },
+    "r/artificial": {
+      "ok": true,
+      "count": 0,
+      "raw_count": 0,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: fetch_error: 429 Client Error: Too Many Requests for url: https://www.reddit.com/r/artificial/top.rss?t=day",
+        "backup1: parse_error: SAXParseException('not well-formed (invalid token)') | http=200 type=text/html; charset=utf-8 len=330653 starts='<!DOCTYPE html> <html lang=\"en-US\" class=\"theme-beta\" dir=\"ltr\" device=\"desktop\"> <head prefix=\"og: https://ogp.me/ns#\"> <title>Welcome t'",
+        "backup2: returned 0 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "social_signal",
+      "state": "empty",
+      "newest_item": null
+    },
+    "r/LocalLLaMA": {
+      "ok": true,
+      "count": 0,
+      "raw_count": 0,
+      "cap": 200,
+      "truncated": 0,
+      "new": 0,
+      "possible_gap": false,
+      "error": null,
+      "used_fallback": false,
+      "attempts": [
+        "main: fetch_error: 429 Client Error: Too Many Requests for url: https://www.reddit.com/r/LocalLLaMA/top.rss?t=day",
+        "backup1: parse_error: SAXParseException('not well-formed (invalid token)') | http=200 type=text/html; charset=utf-8 len=330655 starts='<!DOCTYPE html> <html lang=\"en-US\" class=\"theme-beta\" dir=\"ltr\" device=\"desktop\"> <head prefix=\"og: https://ogp.me/ns#\"> <title>Welcome t'",
+        "backup2: returned 0 items"
+      ],
+      "fetched_at": "2026-10-13T00:33:37.515206+00:00",
+      "category": "social_signal",
+      "state": "empty",
+      "newest_item": null
+    }
+  },
+  "articles": [
+    {
+      "id": "8ce5b03fefbe47a5",
+      "title": "被字节开除的实习生，融资2亿：挑战李飞飞 - 36Kr",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBuWldJNEIxSEF6SS1vRF9LdDJXSy02ZGl6a2ROdmRvbWVqbzRIbW94TUQ0d1dYdV9CZjhyT2ZCNXFMa05iVk1SZnVpUlJiQQ?oc=5",
+      "summary": "被字节开除的实习生，融资2亿：挑战李飞飞&nbsp;&nbsp;36Kr",
+      "published": "Fri, 09 Oct 2026 22:52:00 GMT",
+      "source": "36kr",
+      "category": "chinese_primary",
+      "language": "zh",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "c7010f0ead5f0e6e",
+      "title": "Anthropic拟以2万亿美元估值IPO：ARR高增长、持续亏损与AI安全风险引发泡沫争议 - 虎嗅网",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBnMVN3NkhMRGw2WU1FWkFNd1BCbXU0LVo0bzJSQzBDYzhZaXFVZG9UVDRYeDdFbWJaeUkyNmlKVUY4MEg0aXliYjhGMVVmT19NbFpSYQ?oc=5",
+      "summary": "Anthropic拟以2万亿美元估值IPO：ARR高增长、持续亏损与AI安全风险引发泡沫争议&nbsp;&nbsp;虎嗅网",
+      "published": "Mon, 12 Oct 2026 23:19:14 GMT",
+      "source": "Huxiu",
+      "category": "chinese_tech",
+      "language": "zh",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "09c872b93a00bcad",
+      "title": "Your social media following isn’t the asset you think it is - MarTech",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOenphOW50MEppRUN6dTZQNFJacV8wNnh5X1BEUGhsdFJkMW1qTTBESm5UbVR4MlpIX2Y3Q2pPT19EV1lOdk5rNHNUT015VVZlTTMtVHZwMnlsNUpERHd3X0pxdjhCQTVrNUhjTlhHLXJuSWp4SUU5RXJPTklBUUxVWVZZYWRkUQ?oc=5",
+      "summary": "Your social media following isn’t the asset you think it is&nbsp;&nbsp;MarTech",
+      "published": "Mon, 12 Oct 2026 12:30:34 GMT",
+      "source": "MarTech",
+      "category": "marketing_trade",
+      "language": "en",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "d84f63fd02fe1fe3",
+      "title": "How MOps teams are restructuring for autonomous AI agents - MarTech",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPeExpVjVFTUhtRV9laHNEU3NUdjcxcXV5cV95RTZtbGJJdzc4ek5iVGVEc3VLTDNKYWR3WjRYYmY5TElHaEg2QktTYzN5eGZicURnSHlKcGdkRmJrdTNRaHJmdlpnZndoZGJCMjVwSG1hQzltNUlQUks5UTVKYlFaQlA5NHk?oc=5",
+      "summary": "How MOps teams are restructuring for autonomous AI agents&nbsp;&nbsp;MarTech",
+      "published": "Mon, 12 Oct 2026 13:00:34 GMT",
+      "source": "MarTech",
+      "category": "marketing_trade",
+      "language": "en",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "41af59d01a56de5f",
+      "title": "The state of AI in marketing: Q4 2026 - MarTech",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBLR0o3SVh6SllfRmtaMGxTc1F6OFVBWWlWT3l0V3Rjc3AtY3JaRC1nR2hJM1ZTdmlyQnVWVWNCM01UNXA3NWpEekhiVHVpd01MeGdzUWktWFpNZ3VOU0pfaVBobkVCSktL?oc=5",
+      "summary": "The state of AI in marketing: Q4 2026&nbsp;&nbsp;MarTech",
+      "published": "Mon, 12 Oct 2026 12:15:34 GMT",
+      "source": "MarTech",
+      "category": "marketing_trade",
+      "language": "en",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "bdd907f2d10c9b59",
+      "title": "- MarTech",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOcmRRS2t4WV9ObFlKeTdqMWFnVXFkcTJJWjhhdHExU3RINXhzeFdaMGZfcy1obm9GOGZWNllicTBwOHZXSHBNS3pPbHhfQzFPVkc0RVlhNFhzREhGMEtxeVhUVkE5V0xybENQRmlGbHVKcGNUR3Q0bHJ6akY3ZnZucWtPSWJRaGN4cDNRVzh2UnlJV3pNekxoeGw3WjNXNEZnb3RoU0JLRUVTNXlQWnlsalNvY0JIN1Baa0prU1RkR2dBYUtrSnFjWmRhNGl5UWxuSVpzWXQzelgySFJSSnkxV3dsNTlfdUF0Um55RkpjcmVrd3JuWnlZUGlLVnQ?oc=5",
+      "summary": "&nbsp;&nbsp;MarTech",
+      "published": "Mon, 12 Oct 2026 18:16:59 GMT",
+      "source": "MarTech",
+      "category": "marketing_trade",
+      "language": "en",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "1bce7e32d4c8c5e2",
+      "title": "- MarTech",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQbWFFdE9zUFpYcmcweWN5QjFhQ0oyR09tSXNNZzJ5dGpDVm9RT3lXdVZ5dnNhNUJ3R1BycU52ZFVFSVZlMnZncGUyZ29UQmJLc25FalZ0cU5RYjUtTDQwX19JRm9EZmFHUTQ0d1h1MWMwRnJ2Q2VMYVh5R2JEMXdZWVFSMjYyMnFGSkpjbjlaTzlNWDRfZUkwdzhZY09nRFVxYW1kZGNOOXdVekVWU3BSeW5CbFkxUFpFMFB4NG95QlE2SUpiTlBtLTRZbmlxOUVWMXg1Wk41OVRrTUIxSy1sXzhQVEdfaDBXR3NNVWtYUEdGMDQ2X1dSSklJd0I?oc=5",
+      "summary": "&nbsp;&nbsp;MarTech",
+      "published": "Mon, 12 Oct 2026 18:17:02 GMT",
+      "source": "MarTech",
+      "category": "marketing_trade",
+      "language": "en",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "3e7f44a93f6baa65",
+      "title": "- MarTech",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQa3ZaX2IwcV93MXVYQlBDdUpmMGVSTUhfTHhwNFE4M3U2cFhoYlhyTFhCdDdnbG1LS2JDRE55c0tIZWhaa3Z6VlVWTHRGclE5MmVWVjJYMFRKLU9rWGxaVUJscDB1bnZFanZTdDg5eS1Dak9obGhFU1Q5U2ZNUk5ZR0ZuN19tRC05bTFKczV6V2NlTGxYMGp1ckpSVWgzdGNGM3BlSzVmcXhPajZDWF85Sy1TTkItalFXVXNiNHRjUXFZNTg4LVpVR3gtTzF6Z2FnWkJUNDU2bF80UC1UTUhLUk16S1RZVlBpLU0xUXREcG45eFhVWU9CM1JtSWM?oc=5",
+      "summary": "&nbsp;&nbsp;MarTech",
+      "published": "Mon, 12 Oct 2026 18:16:45 GMT",
+      "source": "MarTech",
+      "category": "marketing_trade",
+      "language": "en",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "3f36eb16fe8e3173",
+      "title": "- MarTech",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNSGdsUjRkSGQyeXdEVktnb2ttLU1vVm0wcG4zU2xzZmVuMS12OWV4WURYMlptb2dnaG0xUThpZjdXSHY2dVdfRThvUmV1RTNsa0JtNE43cmVfQTZsbkpJa0ZyUmdNc3RfOTVCcEV6RGdVRjNzRkZkb01ULVZHSHpvQ2hFLXVCZEJZWjZnZjlybzYtNHFrVkVidkxjWjRvU2JJQUpqNjJ1YzZqZE84cW1RNW1WN3ZSYngzWGZUYVk0a3gzQ3BUZ0F2eEVDVVRYSm4xUnU3eGtGWnZuVWJGZmVZQkVXQzZSdzZoX1ZTY3VKV2pmS1FhbzZmQkphWFc?oc=5",
+      "summary": "&nbsp;&nbsp;MarTech",
+      "published": "Mon, 12 Oct 2026 18:16:47 GMT",
+      "source": "MarTech",
+      "category": "marketing_trade",
+      "language": "en",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "ea689a3f8ccd669d",
+      "title": "Edge AI Daily 早报（10月13日）",
+      "url": "https://www.tmtpost.com/8166048.html",
+      "summary": "OpenAI公开722篇AI生成数学手稿，25位菲尔兹奖得主联名警告数学理解根基受冲击。马斯克承认编程训练数据仅OpenAI、Anthropic、Cursor握有，SpaceX以600亿美元收购Cursor。开源侧，Hugging Face近300万模型，Qwen以15万衍生模型、4.7倍于Llama完成权力交接，NVIDIA以129亿美元收购该平台。亚马逊约70亿美元洽购跨芯片兼容软件商Decart，争夺芯片间软件层；微软基于阿里Qwen3.5-9B发布Decision-1决策模型，构建多底座战略；OpenAI将GPT-6.1 Sol默认上下文升至500k不加价。",
+      "published": "Tue, 13 Oct 2026 08:29:11 +0800",
+      "source": "TMTPost",
+      "category": "chinese_tech",
+      "language": "zh",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "0c87219b22ba224a",
+      "title": "新版TRAE实测：让开发的归开发，办公的归办公",
+      "url": "https://www.tmtpost.com/8165800.html",
+      "summary": "合并之后的TRAE，喜忧参半。",
+      "published": "Tue, 13 Oct 2026 08:26:00 +0800",
+      "source": "TMTPost",
+      "category": "chinese_tech",
+      "language": "zh",
+      "priority": 1,
+      "new": true
+    },
+    {
+      "id": "78814bc66fa32b01",
+      "title": "无纸证券市场制度即将实施 香港证监会核准六家机构提供证券登记服务 - 21财经",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNeWMxa3pKNzQ3b2ZHcFhwTVl4QTFsN24waHhoV2dkZlB6ZlhlMnlhZkJGTTd2Q0dxM0FXTkx1TEhGT0VSWTF3TmlLUDNhVmJyS2VEbnFXbm1pQ0tZaHZBY3VjbWZjUV9vclZnc3NjcnZCRzF3NkZsaHJTUnU2RnByb3hWUF9LNzd2YmtqU3BrTQ?oc=5",
+      "summary": "无纸证券市场制度即将实施 香港证监会核准六家机构提供证券登记服务&nbsp;&nbsp;21财经",
+      "published": "Mon, 12 Oct 2026 12:01:54 GMT",
+      "source": "21Jingji",
+      "category": "chinese_business",
+      "language": "zh",
+      "priority": 2,
+      "new": true
+    },
+    {
+      "id": "6cd96d90f7a750b2",
+      "title": "Albury councillors hit pause on massive 29 per cent rate rise plan - ABC News & Headlines – Australian Broadcasting Corporation",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLTY0aUxHem5XY0Z6aElVeXoybHIzdVhMaE5Vc3pERnVVclMxRUN0M2s5b1hQdjRoQmJvbGkybng0V1I5aDJOdDN1ZmFvMHU0d3NuWVEyUFRWZWlPa0xIVG56UkpHYWIwbVVlR0ktR3pPZmJuc0hDVmNFRlJ2eUFOTzNOdzJKcl8zYmxvdTJHaVJzT2dsY0tSRUZOSGZPdXpHQ3VOSkVR?oc=5",
+      "summary": "Albury councillors hit pause on massive 29 per cent rate rise plan&nbsp;&nbsp;ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "Mon, 12 Oct 2026 19:56:47 GMT",
+      "source": "Google News — Business AU",
+      "category": "google_news_topic",
+      "language": "en",
+      "priority": 2,
+      "new": true
+    },
+    {
+      "id": "37f0cc99df1bdf64",
+      "title": "Dire figures reveal Aussie inflation woes - News.com.au",
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQLWhsdXpuWTBVaGhlWW1OblBqVkxfZHI3UjhGdUozTEdFZ2FVODdzelFmVXEtWjRjZlFhaWhMMTRkM2M2b0hZZWVJNDFuZ0wwZWxtTXJXblBoV0h4OUp6V1lyeHBvd0N4MzJrQTdYOXUwWEJxNlZ0ejhZc3ZBYVd2Y0VEZGlFTlNrRHZkV0R6UWNuRHFUSHkxM05oQlVuNmt3U3pmY3JiSGt5Z2pYazVQNHU4Y1h2bGdMbGFfZ19Mb1JfVEk1V3lUQTdYUS1uVEhvQ0p1VFdJM1ZPd0xLc2tIM1FWVG5VLW9PdEVxNUF0UHhlOWxrTnZuOQ?oc=5",
+      "summary": "Dire figures reveal Aussie inflation woes&nbsp;&nbsp;News.com.auAnother blow for workers already struggling with cost of living pressures&nbsp;&nbsp;News24Wage growth slows in September after August bounce&nbsp;&nbsp;CommBank",
+      "published": "Mon, 12 Oct 2026 06:35:09 GMT",
+      "source": "Google News — Business AU",
+      "category": "google_news_topic",
+      "language": "en",
+      "priority": 2,
+      "new": true
+    },
+    {
+      "id": "6e3f39e3796ff5e1",
+      "title": "Someone used AI to create a book about me and sold it online - ABC News & Headlines – Australian Broadcasting Corporation",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOeE1nYnVKSGhyUFpub2FQOElnWUFQd1puVDVQOG0tVllvaUdyaE9ReW4xOE95NHAwbTQzdlhBaWZ1Rko3aEk5ZFdoNkhkVndMWkZqMHJRQUdMSE5lSkNJQmp2VW9LYnJzZjhEQUFFUUl5Vmk1eDF6YmlSSW5mS25kSnZoUDNSQzU3d1E?oc=5",
+      "summary": "Someone used AI to create a book about me and sold it online&nbsp;&nbsp;ABC News & Headlines – Australian Broadcasting CorporationAn AI fake of Kevin Roose's new book lands under the real one as Amazon's 'No. 1 New Release'&nbsp;&nbsp;The Cool Down",
+      "published": "Fri, 09 Oct 2026 19:19:32 GMT",
+      "source": "Google News — Business AU",
+      "category": "google_news_topic",
+      "language": "en",
+      "priority": 2,
+      "new": true
+    },
+    {
+      "id": "8bf1be66ab42c925",
+      "title": "15-Minute Yin Yoga to Build Your Inner Resilience - Yoga Journal",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFAwVWlIZnBNeVZrU0RBaGhoczJoeE0wbjBaLUNUbWVoVF94S25qRURYQlNsRUNJTWV3dXN2V1RHY2xLY1Vqdkc4WmZZSWFXSTB4THR1bW1KVDVOc1ozMTZVSmZFTjgyNEgxdnF3TnlNWWNBazVpYVJQcQ?oc=5",
+      "summary": "15-Minute Yin Yoga to Build Your Inner Resilience&nbsp;&nbsp;Yoga Journal",
+      "published": "Mon, 12 Oct 2026 20:08:30 GMT",
+      "source": "Google News — Science AU",
+      "category": "google_news_topic",
+      "language": "en",
+      "priority": 2,
+      "new": true
+    },
+    {
+      "id": "88c059e6f85f7e8d",
+      "title": "Mini Review: Bluey's Happy Snaps (Switch 2) - A Light, Breezy Photography Adventure - Nintendo Life",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9aejE4M2ttdkJfMjJUeTJqcGFxUFdZeWRuc0RNRDZWV09UOWFaX3pab2piT3pHVm5jZ2NxTFYyOHZFcVhNblQxc0JBY3JPT2lmYldDVDZDX0FmeDd6QkVHSWx3cFo2SGM1YWcwS1Y2dF81ZFZIMXdJTjdhSEtTdw?oc=5",
+      "summary": "Mini Review: Bluey's Happy Snaps (Switch 2) - A Light, Breezy Photography Adventure&nbsp;&nbsp;Nintendo LifeBluey’s Happy Snaps (Switch 2) Review&nbsp;&nbsp;Vooks",
+      "published": "Mon, 12 Oct 2026 13:00:00 GMT",
+      "source": "Google News — Technology AU",
+      "category": "google_news_topic",
+      "language": "en",
+      "priority": 2,
+      "new": true
+    },
+    {
+      "id": "3b435b7453dffb33",
+      "title": "Satisfactory: The Board Game Preview - IGN Pakistan",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE15b3Bjdm9kdG5EOXhuR2dhS2Z3LVlPY256LUxsRy1TMkJjTzFmWEVzNXdMNVhCTGd4VHRWM2FycGk4bUFWNjh6NG5icHF0OUJoYVdkejAySU9YOG9RTUJrVTdmdFZQQmg5VFpmM0pBRlRDUkNCRDN0cXdCM09qU2s?oc=5",
+      "summary": "Satisfactory: The Board Game Preview&nbsp;&nbsp;IGN Pakistan",
+      "published": "Mon, 12 Oct 2026 22:48:26 GMT",
+      "source": "Google News — Technology AU",
+      "category": "google_news_topic",
+      "language": "en",
+      "priority": 2,
+      "new": true
+    },
+    {
+      "id": "0ba74237c4cf13c0",
+      "title": "Media Briefing: As AI search shifts referrals, publishers revisit registration walls - Digiday",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNX1lZUE5tVE1JbFl5SnhXSWNlZTNrOTRyOGJCdHp2ZjFVVU5kQUlGTkViS19MNG9xYW1ib3Q1R2lTd0ViaWpIaVo5RDVSZzJEQ1hSZG4tMC1TYnBFbmpzTG5vX1lHODFqaDBqbE5YVld2cDdpMTl6U0ZfbFY1a0ZwcmtVQkRYenE2c0hLWERTZWNUeWdwdkMtckJuOU05OUxKRVkzYkUtMjhfd2tyQnc?oc=5",
+      "summary": "Media Briefing: As AI search shifts referrals, publishers revisit registration walls&nbsp;&nbsp;Digiday",
+      "published": "Thu, 08 Oct 2026 04:05:31 GMT",
+      "source": "Google News — Technology AU",
+      "category": "google_news_topic",
+      "language": "en",
+      "priority": 2,
+      "new": true
+    },
+    {
+      "id": "188b4be17d2fd0a7",
+      "title": "蒙古国草原火蔓延至我边境，2000余人正在堵截 - ThePaper.cn",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9tLWJmdUVUY0Z1dnY1bndYWmI1Zk9yTm1MSWdwZkVkQTEzOENaUW16NTFPZ21zaUdXZURwUkNHM1lXSG5oS09HcDVlaGhrcEM1aENkMnZRVUJBTm5ORkE?oc=5",
+      "summary": "蒙古国草原火蔓延至我边境，2000余人正在堵截&nbsp;&nbsp;ThePaper.cn",
+      "published": "Sun, 11 Oct 2026 14:12:00 GMT",
+      "source": "The Paper Tech",
+      "category": "chinese_tech",
+      "language": "zh",
+      "priority": 2,
+      "new": true
+    }
+  ]
+}
