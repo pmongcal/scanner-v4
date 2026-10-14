@@ -2,8 +2,10 @@ name: Scanner V4 Fetch RSS Feeds
 
 on:
   schedule:
-    # Once daily at 06:05 UTC: fetch all feeds, then email the digest.
-    - cron: "5 6 * * *"
+    # Once daily at 23:00 UTC, which is 07:00 the next morning in the
+    # Philippines (UTC+8, no daylight saving). GitHub often starts scheduled
+    # runs 5 to 30 minutes late, so the email can land a little after 7:00.
+    - cron: "0 23 * * *"
   workflow_dispatch: {}  # manual trigger from the Actions tab
 
 permissions:
@@ -16,7 +18,7 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v4
