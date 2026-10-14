@@ -1,32 +1,36 @@
 #!/usr/bin/env python3
 """
-Package articles.json into an email digest and send it via Gmail SMTP.
+Email the daily digest as a CSV attachment via Gmail SMTP.
 
-Reads secrets from env (set via GitHub Actions secrets):
+CSV columns:
+  Date retrieved | Feed name | Article name | Content
+
+Date retrieved is in Philippine time (UTC+8). The file is UTF-8 with a BOM so
+Excel opens the Chinese text correctly. Google Sheets reads it as is.
+
+The CSV holds every article first seen since the last successful email (read
+from pending_digest.json). pending_digest.json is cleared only after the send
+succeeds, so a failed send goes out with the next run.
+
+Secrets from env (GitHub Actions secrets):
   SMTP_HOST           default: smtp.gmail.com
   SMTP_PORT           default: 587
-  SMTP_USER           (required) — e.g. you@gmail.com
-  SMTP_PASSWORD       (required) — Gmail app password
-  SMTP_TO             (required) — e.g. you@gmail.com (can equal SMTP_USER)
+  SMTP_USER           (required) Gmail address
+  SMTP_PASSWORD       (required) Gmail app password
+  SMTP_TO             (required) recipient
   SMTP_FROM_NAME      default: Scanner V4
-
-The digest includes ALL articles first seen since the last successful email
-(normally one daily run; more if an earlier email failed). Articles are
-unfiltered and unlabelled: nothing is marked PASS or SKIP.
-
-The full machine-readable payload is embedded between explicit delimiters:
-  -----BEGIN SCANNER_V4_JSON-----
-  {...payload...}
-  -----END SCANNER_V4_JSON-----
 """
 
 from __future__ import annotations
 
+import csv
+import io
 import json
 import os
 import smtplib
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
+from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
@@ -35,123 +39,73 @@ ROOT = Path(__file__).resolve().parent
 ARTICLES_PATH = ROOT / "articles.json"
 PENDING_PATH = ROOT / "pending_digest.json"
 
-PREVIEW_PER_SOURCE = 3
-DELIM_BEGIN = "-----BEGIN SCANNER_V4_JSON-----"
-DELIM_END = "-----END SCANNER_V4_JSON-----"
+PHT = timezone(timedelta(hours=8))
+CSV_HEADER = ["Date retrieved", "Feed name", "Article name", "Content"]
+FALLBACK_TAG = "[FULL TEXT NOT RETRIEVED]"
+MAX_ATTACHMENT_BYTES = 24 * 1024 * 1024  # Gmail's limit is 25 MB
+
+
+def to_pht(iso: str | None) -> str:
+    if not iso:
+        return ""
+    try:
+        dt = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+    except ValueError:
+        return iso
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(PHT).strftime("%Y-%m-%d %H:%M")
 
 
 def feed_state(st: dict) -> str:
-    """working | empty | stale | failed. Older payloads without a state fall
-    back to the ok flag."""
     return st.get("state") or ("working" if st.get("ok") else "failed")
 
 
-def feed_health(runs: list[dict]) -> dict:
-    """Summarise truncation, gaps and failures per feed across every run in the digest."""
-    health: dict[str, dict] = {}
-    for run in runs:
-        for name, st in (run.get("feed_status") or {}).items():
-            h = health.setdefault(name, {"runs": 0, "failed_runs": 0, "truncated_items": 0, "gap_runs": 0})
-            h["runs"] += 1
-            if not st.get("ok"):
-                h["failed_runs"] += 1
-            h["truncated_items"] += int(st.get("truncated") or 0)
-            if st.get("possible_gap"):
-                h["gap_runs"] += 1
-    return health
+def build_csv(articles: list[dict], fallback_time: str | None) -> bytes:
+    buf = io.StringIO(newline="")
+    w = csv.writer(buf, quoting=csv.QUOTE_ALL, lineterminator="\r\n")
+    w.writerow(CSV_HEADER)
+    for a in articles:
+        content = a.get("content")
+        if content is None:  # article stored before full text existed
+            content = a.get("summary", "")
+        w.writerow([
+            to_pht(a.get("retrieved_at") or fallback_time),
+            a.get("source", ""),
+            a.get("title", ""),
+            content,
+        ])
+    return ("\ufeff" + buf.getvalue()).encode("utf-8")
 
 
-def build_payload(articles: dict, pending: dict | None) -> dict:
-    """Embed every NEW article since the last successful email.
-
-    Uses pending_digest.json (filled by every fetch run) when present. Falls
-    back to the new articles in articles.json for older repos.
-    """
-    if pending and pending.get("articles") is not None:
-        new_articles = pending.get("articles", [])
-        runs = pending.get("runs", [])
-    else:
-        new_articles = [a for a in articles.get("articles", []) if a.get("new")]
-        runs = [{"generated_at": articles.get("generated_at"), "feed_status": articles.get("feed_status", {})}]
-    return {
-        "generated_at": articles.get("generated_at"),
-        "digest_id": articles.get("generated_at"),
-        "fetch_runs": [r.get("generated_at") for r in runs],
-        "feed_status": articles.get("feed_status", {}),
-        "feed_health": feed_health(runs),
-        "counts": {
-            **articles.get("counts", {}),
-            "new": len(new_articles),
-        },
-        "articles": new_articles,
-    }
-
-
-def build_subject(payload: dict) -> str:
-    stamp = (payload.get("generated_at") or datetime.utcnow().isoformat()).split(".")[0].replace("+00:00", "") + "Z"
-    counts = payload.get("counts", {})
-    status = payload.get("feed_status", {})
-    working = sum(1 for s in status.values() if feed_state(s) == "working")
-    total = len(status)
-    return (
-        f"[scanner-v4] {stamp} | {counts.get('new', 0)} new | {working}/{total} feeds working"
-    )
-
-
-def build_plain_body(payload: dict) -> str:
-    counts = payload.get("counts", {})
-    status = payload.get("feed_status", {})
-    failed = [n for n, s in status.items() if not s.get("ok")]
-    articles = payload.get("articles", [])
+def build_body(articles: list[dict], feed_status: dict, csv_name: str, csv_size: int) -> str:
+    full = sum(1 for a in articles if a.get("content_status") in ("full_feed", "full_page"))
+    fallback = sum(1 for a in articles if a.get("content_status") == "fallback")
+    other = len(articles) - full - fallback
 
     lines = [
-        f"Generated: {payload.get('generated_at')}",
-        f"Counts: total={counts.get('total', 0)} new={counts.get('new', 0)}",
-        f"Feeds working: {sum(1 for s in status.values() if feed_state(s) == 'working')}/{len(status)}",
+        f"Attached: {csv_name} ({csv_size / 1024:.0f} KB)",
+        f"Articles: {len(articles)}",
+        f"Full text retrieved: {full}",
+        f"Description only (rows start with {FALLBACK_TAG}): {fallback}",
     ]
-    for state, meaning in (("failed", "error on every address"),
-                           ("empty", "no error, but zero articles came back"),
-                           ("stale", "newest article is more than 14 days old")):
-        names = sorted(n for n, s in status.items() if feed_state(s) == state)
+    if other:
+        lines.append(f"Stored before full text existed: {other}")
+
+    working = sum(1 for s in feed_status.values() if feed_state(s) == "working")
+    lines.append(f"Feeds working: {working}/{len(feed_status)}")
+    for state in ("failed", "empty", "stale"):
+        names = sorted(n for n, s in feed_status.items() if feed_state(s) == state)
         if names:
-            lines.append(f"{state.capitalize()} feeds ({meaning}): " + ", ".join(names))
-    lines.append(f"Fetch runs in this digest: {len(payload.get('fetch_runs', []))}")
-    health = payload.get("feed_health", {})
-    trunc = {n: h for n, h in health.items() if h.get("truncated_items")}
-    gaps = {n: h for n, h in health.items() if h.get("gap_runs")}
-    if trunc:
-        lines.append("Truncated feeds (items over the cap were not read): " + ", ".join(
-            f"{n} ({h['truncated_items']})" for n, h in trunc.items()))
-    if gaps:
-        lines.append("Possible gaps (no overlap with previous run): " + ", ".join(
-            f"{n} ({h['gap_runs']} run(s))" for n, h in gaps.items()))
+            lines.append(f"{state.capitalize()} feeds: " + ", ".join(names))
 
-    # Preview: a few articles from every source, so one busy feed can't fill it.
-    by_source: dict[str, list[dict]] = {}
-    for a in articles:
-        by_source.setdefault(a.get("source", "?"), []).append(a)
-    lines.extend(["", f"NEW ARTICLES ({len(articles)} total, up to {PREVIEW_PER_SOURCE} per source):"])
-    if not articles:
-        lines.append("  (none)")
-    for src in sorted(by_source, key=lambda x: (-len(by_source[x]), x.lower())):
-        items = by_source[src]
-        lines.append(f"  [{src}] {len(items)} article(s)")
-        for a in items[:PREVIEW_PER_SOURCE]:
-            lines.append(f"    • {a.get('title')}")
-            lines.append(f"      {a.get('url')}")
-
-    fb = [n for n, st in status.items() if st.get("used_fallback")]
-    if fb:
-        lines.extend(["", "Feeds read through their fallback address: " + ", ".join(fb)])
-
-    lines.extend([
-        "",
-        "Full payload follows (parsed by Cowork — do not edit):",
-        "",
-        DELIM_BEGIN,
-        json.dumps(payload, ensure_ascii=False),
-        DELIM_END,
-    ])
+    if fallback:
+        by_feed: dict[str, int] = {}
+        for a in articles:
+            if a.get("content_status") == "fallback":
+                by_feed[a.get("source", "?")] = by_feed.get(a.get("source", "?"), 0) + 1
+        top = sorted(by_feed.items(), key=lambda kv: -kv[1])[:8]
+        lines.append("Most description-only rows by feed: " + ", ".join(f"{n} ({c})" for n, c in top))
     return "\n".join(lines)
 
 
@@ -161,19 +115,27 @@ def main() -> int:
         return 2
 
     with ARTICLES_PATH.open() as f:
-        articles = json.load(f)
+        meta = json.load(f)
 
-    pending = None
+    articles: list[dict] = []
     if PENDING_PATH.exists():
         try:
             with PENDING_PATH.open() as f:
-                pending = json.load(f)
+                articles = json.load(f).get("articles", [])
         except Exception:
-            pending = None
+            articles = []
 
-    payload = build_payload(articles, pending)
-    subject = build_subject(payload)
-    body = build_plain_body(payload)
+    feed_status = meta.get("feed_status", {})
+    csv_bytes = build_csv(articles, meta.get("generated_at"))
+    if len(csv_bytes) > MAX_ATTACHMENT_BYTES:
+        print(f"[send_email] FATAL: CSV is {len(csv_bytes)} bytes, over the Gmail limit. "
+              "Nothing was sent and the digest stays pending.", file=sys.stderr)
+        return 2
+
+    today = datetime.now(PHT).strftime("%Y-%m-%d")
+    csv_name = f"scanner-{today}.csv"
+    subject = f"[scanner-v4] {today} | {len(articles)} articles"
+    body = build_body(articles, feed_status, csv_name, len(csv_bytes))
 
     smtp_host = os.environ.get("SMTP_HOST") or "smtp.gmail.com"
     smtp_port = int(os.environ.get("SMTP_PORT") or "587")
@@ -191,22 +153,24 @@ def main() -> int:
         print(f"[send_email] FATAL: missing env vars: {missing}", file=sys.stderr)
         return 2
 
-    msg = MIMEMultipart("alternative")
+    msg = MIMEMultipart("mixed")
     msg["From"] = f"{smtp_from_name} <{smtp_user}>"
     msg["To"] = smtp_to
     msg["Subject"] = subject
     msg["X-Scanner-V4"] = "1"
     msg.attach(MIMEText(body, "plain", "utf-8"))
+    part = MIMEApplication(csv_bytes, _subtype="csv", Name=csv_name)
+    part.add_header("Content-Disposition", "attachment", filename=csv_name)
+    msg.attach(part)
 
     print(f"[send_email] connecting {smtp_host}:{smtp_port} as {smtp_user}")
-    with smtplib.SMTP(smtp_host, smtp_port, timeout=30) as s:
+    with smtplib.SMTP(smtp_host, smtp_port, timeout=60) as s:
         s.starttls()
         s.login(smtp_user, smtp_password)
         s.send_message(msg)
-    print(f"[send_email] sent \"{subject}\" to {smtp_to}")
+    print(f"[send_email] sent \"{subject}\" to {smtp_to} with {csv_name}")
 
-    # Clear the pending digest only after a successful send. If anything above
-    # failed, the articles stay pending and go out with the next email.
+    # Clear the pending digest only after a successful send.
     with PENDING_PATH.open("w") as f:
         json.dump({"articles": [], "runs": []}, f, indent=2)
     print("[send_email] cleared pending_digest.json")

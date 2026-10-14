@@ -1,12 +1,12 @@
 # scanner-v4
 
 Stable, zero-touch RSS aggregation for the CMAX Intelligence Scanner.
-GitHub Actions fetches 40 feeds once a day and emails a digest containing every article first seen since the last successful email. GitHub only scrapes and stores: there is no filtering and no PASS or SKIP label. Any selection happens downstream.
+GitHub Actions fetches 40 feeds once a day and emails a CSV (Date retrieved, Feed name, Article name, Content) containing every article first seen since the last successful email, with the full article text where it can be retrieved. GitHub only scrapes and stores: there is no filtering and no PASS or SKIP label. Any selection happens downstream.
 
 ## How it runs
 
 1. `.github/workflows/fetch_feeds.yml` triggers `fetch_feeds.py` on a
-   cron schedule (06:05 UTC daily) and on manual `workflow_dispatch`.
+   cron schedule (23:00 UTC daily, which is 07:00 in the Philippines) and on manual `workflow_dispatch`.
    Each feed is read up to 200 items (override per feed with `"max_items"` in
    `feed_registry.json`). Items over the cap and feeds with no overlap between
    runs are reported in the email so nothing is lost silently.
@@ -20,8 +20,7 @@ GitHub displays CSV files as tables. You can also open them in Google Sheets.
 2. `fetch_feeds.py` reads `feed_registry.json`, fetches each feed in
    parallel, deduplicates against `seen_ids.json`, and writes `articles.json`.
    Articles are stored exactly as scraped.
-3. `send_email.py` packages ALL new articles into an email digest, then sends
-   via SMTP using the secrets configured in repo settings.
+3. `extract_content.py` gets the full text of each new article. `send_email.py` writes ALL new articles to a CSV and sends it as an attachment via SMTP using the secrets configured in repo settings. Rows that start with `[FULL TEXT NOT RETRIEVED]` only have the feed description (paywall, bot block, or an undecodable Google News link).
 4. The workflow commits `articles.json` and `articles_archive/` back
    to the repo as an audit trail.
 

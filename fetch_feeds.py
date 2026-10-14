@@ -50,6 +50,8 @@ from typing import Any
 import feedparser
 import requests
 
+from extract_content import enrich_articles, feed_full_text
+
 # ---- paths ---------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
@@ -222,6 +224,14 @@ def split_publisher(title: str, url: str) -> tuple[str, str]:
         core, pub = title.rsplit(" - ", 1)
         return core.strip(), pub.strip()
     return title.strip(), ""
+
+
+_HEAVY_KEYS = ("feed_content", "content", "content_status", "resolved_url", "retrieved_at")
+
+
+def slim(a: dict) -> dict:
+    """Article without the full text, for articles.json and the archive."""
+    return {k: v for k, v in a.items() if k not in _HEAVY_KEYS}
 
 
 def load_pending() -> dict:
@@ -437,6 +447,7 @@ def _fetch_one(feed: dict, url: str) -> tuple[dict, list[dict], str | None, int]
                 "category": feed["category"],
                 "language": feed["language"],
                 "priority": feed["priority"],
+                "feed_content": feed_full_text(entry),
             }
         )
     return feed, articles, None, raw_count
@@ -565,12 +576,28 @@ def main() -> int:
 
     new_articles = [a for a in all_articles if a["new"]]
 
+    # Get the full article text for new articles only. The text goes into the
+    # pending digest (for the CSV email) and is kept out of articles.json and
+    # the archive, so the repo does not grow by several MB a day.
+    print(f"[aggregator] retrieving full text for {len(new_articles)} new articles")
+    t0 = time.time()
+    content_stats = enrich_articles(new_articles)
+    print(f"[aggregator] full text in {time.time() - t0:.0f}s: "
+          f"feed={content_stats['full_feed']} page={content_stats['full_page']} "
+          f"fallback={content_stats['fallback']}")
+    retrieved_at = now.isoformat(timespec="seconds")
+    for a in new_articles:
+        a["retrieved_at"] = retrieved_at
+
     # Add this run's new articles to the pending digest. The email step sends
     # the whole pending list and only clears it after a successful send, so a
     # failed email no longer loses articles that seen_ids has already recorded.
     pending = load_pending()
     pending_ids = {a["id"] for a in pending["articles"]}
-    pending["articles"].extend(a for a in new_articles if a["id"] not in pending_ids)
+    pending["articles"].extend(
+        {k: v for k, v in a.items() if k != "feed_content"}
+        for a in new_articles if a["id"] not in pending_ids
+    )
     pending["runs"].append({"generated_at": now.isoformat(), "feed_status": feed_status})
     save_pending(pending)
     print(f"[aggregator] pending digest now holds {len(pending['articles'])} articles "
@@ -597,7 +624,7 @@ def main() -> int:
             "total": len(all_articles),
             "new": len(new_articles),
         },
-        "articles": all_articles,
+        "articles": [slim(a) for a in all_articles],
     }
 
     with OUTPUT_PATH.open("w") as f:
@@ -615,7 +642,7 @@ def main() -> int:
                 "generated_at": output["generated_at"],
                 "counts": output["counts"],
                 "feed_status": feed_status,
-                "articles": new_articles,
+                "articles": [slim(a) for a in new_articles],
             },
             f,
             indent=2,
