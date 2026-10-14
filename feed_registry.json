@@ -26,10 +26,13 @@
     {
       "name": "Huxiu",
       "category": "chinese_tech",
-      "url": "https://news.google.com/rss/search?q=site:huxiu.com+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "url": "https://www.huxiu.com/rss/0.xml",
       "language": "zh",
       "priority": 1,
-      "fallback_url": "https://feedx.net/rss/huxiu.xml"
+      "fallback_url": "https://feedx.net/rss/huxiu.xml",
+      "fallback_urls": [
+        "https://news.google.com/rss/search?q=site:huxiu.com+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans"
+      ]
     },
     {
       "name": "TMTPost",
@@ -63,17 +66,23 @@
     {
       "name": "Hacker News",
       "category": "english_primary",
-      "url": "https://news.ycombinator.com/rss",
+      "url": "https://hnrss.org/frontpage",
       "language": "en",
       "priority": 1,
-      "fallback_url": "https://news.google.com/rss/search?q=site:news.ycombinator.com+when:7d&hl=en-US&gl=US&ceid=US:en"
+      "fallback_url": "https://news.google.com/rss/search?q=site:news.ycombinator.com+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "fallback_urls": [
+        "https://news.ycombinator.com/rss"
+      ]
     },
     {
       "name": "Search Engine Land",
       "category": "english_primary",
-      "url": "https://news.google.com/rss/search?q=site:searchengineland.com+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "url": "https://searchengineland.com/feed",
       "language": "en",
-      "priority": 1
+      "priority": 1,
+      "fallback_urls": [
+        "https://news.google.com/rss/search?q=site:searchengineland.com+when:7d&hl=en-US&gl=US&ceid=US:en"
+      ]
     },
     {
       "name": "Mumbrella",
@@ -85,9 +94,12 @@
     {
       "name": "Marketing Week",
       "category": "regional",
-      "url": "https://news.google.com/rss/search?q=site:marketingweek.com+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "url": "https://www.marketingweek.com/feed/",
       "language": "en",
-      "priority": 2
+      "priority": 2,
+      "fallback_urls": [
+        "https://news.google.com/rss/search?q=site:marketingweek.com+when:7d&hl=en-US&gl=US&ceid=US:en"
+      ]
     },
     {
       "name": "The Drum",
@@ -158,9 +170,12 @@
     {
       "name": "AI Snake Oil",
       "category": "ai_deep",
-      "url": "https://news.google.com/rss/search?q=site:normaltech.ai+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "url": "https://www.aisnakeoil.com/feed",
       "language": "en",
-      "priority": 1
+      "priority": 1,
+      "fallback_urls": [
+        "https://news.google.com/rss/search?q=site:normaltech.ai+when:7d&hl=en-US&gl=US&ceid=US:en"
+      ]
     },
     {
       "name": "Semafor Tech",

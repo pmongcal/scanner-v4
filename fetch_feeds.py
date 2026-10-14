@@ -226,7 +226,7 @@ def split_publisher(title: str, url: str) -> tuple[str, str]:
     return title.strip(), ""
 
 
-_HEAVY_KEYS = ("feed_content", "content", "content_status", "resolved_url", "retrieved_at")
+_HEAVY_KEYS = ("feed_content", "content", "content_status", "resolved_url", "retrieved_at", "content_note")
 
 
 def slim(a: dict) -> dict:
