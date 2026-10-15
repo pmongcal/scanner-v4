@@ -59,6 +59,11 @@ REGISTRY_PATH = ROOT / "feed_registry.json"
 OUTPUT_PATH = ROOT / "articles.json"
 ARCHIVE_DIR = ROOT / "articles_archive"
 SEEN_IDS_PATH = ROOT / "seen_ids.json"
+
+# RETEST=1 (set by the workflow's "retest" box): treat every article as new, so
+# the full email can be rebuilt. Nothing is saved to seen_ids.json or the
+# archive, so the normal daily state is untouched.
+RETEST = os.environ.get("RETEST") == "1"
 PENDING_PATH = ROOT / "pending_digest.json"  # new articles waiting for the next email
 AUDIT_DIR = ROOT / "audit"                   # human-readable audit trail, committed to the repo
 
@@ -462,6 +467,9 @@ def main() -> int:
     if switched_off:
         print(f"[aggregator] switched off in registry: {', '.join(switched_off)}")
     seen = load_seen()
+    if RETEST:
+        print("[aggregator] RETEST mode: ignoring seen_ids, nothing will be saved to it")
+        seen = {}
     now = datetime.now(timezone.utc)
 
     feed_status: dict[str, dict] = {}
@@ -543,7 +551,7 @@ def main() -> int:
 
     # mark which are newly-seen vs already sent. A story counts as seen if its
     # link was seen in ANY feed. Ids saved under the old formula still match.
-    seeded = seed_seen_from_archive(seen)
+    seeded = 0 if RETEST else seed_seen_from_archive(seen)
     if seeded:
         print(f"[aggregator] migration: marked {seeded} previously sent links as seen")
     had_history = {name: bool(seen.get(name)) for name in feed_status}
@@ -572,7 +580,8 @@ def main() -> int:
         if st["ok"] and st["count"] > 0 and had_history.get(name) and st["new"] >= st["count"]:
             st["possible_gap"] = True
 
-    save_seen(seen)
+    if not RETEST:
+        save_seen(seen)
 
     new_articles = [a for a in all_articles if a["new"]]
 
@@ -631,24 +640,27 @@ def main() -> int:
         json.dump(output, f, indent=2, ensure_ascii=False)
     print(f"[aggregator] wrote {OUTPUT_PATH}")
 
-    # archive snapshot
-    ARCHIVE_DIR.mkdir(exist_ok=True)
-    stamp = now.strftime("%Y-%m-%dT%H-%MZ")
-    archive_path = ARCHIVE_DIR / f"{stamp}.json"
-    with archive_path.open("w") as f:
-        # Every new article from this run, unfiltered and unlabelled.
-        json.dump(
-            {
-                "generated_at": output["generated_at"],
-                "counts": output["counts"],
-                "feed_status": feed_status,
-                "articles": [slim(a) for a in new_articles],
-            },
-            f,
-            indent=2,
-            ensure_ascii=False,
-        )
-    print(f"[aggregator] archived {archive_path}")
+    # archive snapshot (skipped in retest mode)
+    if RETEST:
+        print("[aggregator] RETEST mode: archive not written")
+    else:
+        ARCHIVE_DIR.mkdir(exist_ok=True)
+        stamp = now.strftime("%Y-%m-%dT%H-%MZ")
+        archive_path = ARCHIVE_DIR / f"{stamp}.json"
+        with archive_path.open("w") as f:
+            # Every new article from this run, unfiltered and unlabelled.
+            json.dump(
+                {
+                    "generated_at": output["generated_at"],
+                    "counts": output["counts"],
+                    "feed_status": feed_status,
+                    "articles": [slim(a) for a in new_articles],
+                },
+                f,
+                indent=2,
+                ensure_ascii=False,
+            )
+        print(f"[aggregator] archived {archive_path}")
 
     # summary table
     failed = [n for n, s in feed_status.items() if not s["ok"]]

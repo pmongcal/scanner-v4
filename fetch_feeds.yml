@@ -2,11 +2,17 @@ name: Scanner V4 Fetch RSS Feeds
 
 on:
   schedule:
-    # Once daily at 23:00 UTC, which is 07:00 the next morning in the
-    # Philippines (UTC+8, no daylight saving). GitHub often starts scheduled
-    # runs 5 to 30 minutes late, so the email can land a little after 7:00.
-    - cron: "0 23 * * *"
-  workflow_dispatch: {}  # manual trigger from the Actions tab
+    # Once daily at 22:37 UTC, which is 06:37 in the Philippines (UTC+8, no
+    # daylight saving). The run takes 10 to 30 minutes and the email is sent at
+    # the end, so it starts early to land by 07:00. The odd minute avoids the
+    # top of the hour, when GitHub delays or drops scheduled runs.
+    - cron: "37 22 * * *"
+  workflow_dispatch:  # manual trigger from the Actions tab
+    inputs:
+      retest:
+        description: "Retest: treat every article as new and email the full set (does not change saved state)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write  # needed to commit the articles.json back to the repo
@@ -35,6 +41,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run aggregator
+        env:
+          # Optional. Free key from jina.ai raises the limit on the fallback page reader.
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          RETEST: ${{ inputs.retest && '1' || '' }}
         run: python fetch_feeds.py
 
       - name: Email digest to Gmail

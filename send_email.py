@@ -3,7 +3,7 @@
 Email the daily digest as a CSV attachment via Gmail SMTP.
 
 CSV columns:
-  Date retrieved | Feed name | Article name | Content
+  Date retrieved | Feed name | Article name | Short description | Content
 
 Date retrieved is in Philippine time (UTC+8). The file is UTF-8 with a BOM so
 Excel opens the Chinese text correctly. Google Sheets reads it as is.
@@ -35,12 +35,14 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
 
+from extract_content import truncate_bytes
+
 ROOT = Path(__file__).resolve().parent
 ARTICLES_PATH = ROOT / "articles.json"
 PENDING_PATH = ROOT / "pending_digest.json"
 
 PHT = timezone(timedelta(hours=8))
-CSV_HEADER = ["Date retrieved", "Feed name", "Article name", "Content"]
+CSV_HEADER = ["Date retrieved", "Feed name", "Article name", "Short description", "Content"]
 FALLBACK_TAG = "[FULL TEXT NOT RETRIEVED]"
 MAX_ATTACHMENT_BYTES = 24 * 1024 * 1024  # Gmail's limit is 25 MB
 
@@ -69,10 +71,12 @@ def build_csv(articles: list[dict], fallback_time: str | None) -> bytes:
         content = a.get("content")
         if content is None:  # article stored before full text existed
             content = a.get("summary", "")
+        content = truncate_bytes(content)  # safety net: 8 KB per cell
         w.writerow([
             to_pht(a.get("retrieved_at") or fallback_time),
             a.get("source", ""),
             a.get("title", ""),
+            a.get("summary", ""),
             content,
         ])
     return ("\ufeff" + buf.getvalue()).encode("utf-8")

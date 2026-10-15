@@ -43,7 +43,8 @@ PAGE_TIMEOUT_S = 20
 WORKERS = 8
 FEED_TEXT_MIN_CHARS = 1500   # feed text shorter than this is treated as a teaser
 PAGE_TEXT_MIN_CHARS = 300    # page text shorter than this is treated as a failed extract
-MAX_CONTENT_CHARS = 32000    # Excel and Sheets cap a cell at 32,767 characters
+MAX_CONTENT_BYTES = 8 * 1024   # hard cap per CSV content cell, measured in UTF-8 bytes
+TRUNCATION_MARK = " [TRUNCATED]"
 MAX_PAGE_BYTES = 3_000_000
 FALLBACK_TAG = "[FULL TEXT NOT RETRIEVED] "
 
@@ -128,20 +129,17 @@ def decode_google_news(url: str) -> tuple[str | None, str]:
     return None, f"google decode failed: {last}"
 
 
-def extract_via_jina(url: str) -> tuple[str, str]:
-    """Second try for pages that block direct requests from GitHub: the Jina
-    Reader service (r.jina.ai) fetches the page and returns plain text. Works
-    without a key at a low rate limit. Set JINA_API_KEY for a higher limit, or
-    USE_JINA=0 to switch it off."""
-    if os.environ.get("USE_JINA", "1") == "0":
-        return "", "jina off"
+def _jina_once(url: str, engine: str | None) -> tuple[str, str]:
     key = os.environ.get("JINA_API_KEY")
     _pace("r.jina.ai", 0.6 if key else 3.2)
     headers = {"Accept": "text/plain", "X-Return-Format": "text", "User-Agent": USER_AGENT}
     if key:
         headers["Authorization"] = f"Bearer {key}"
+    if engine:
+        headers["X-Engine"] = engine
     try:
-        resp = requests.get("https://r.jina.ai/" + url, headers=headers, timeout=45)
+        resp = requests.get("https://r.jina.ai/" + url, headers=headers,
+                            timeout=75 if engine else 45)
     except Exception as e:
         return "", f"jina {type(e).__name__}"
     if resp.status_code != 200:
@@ -153,7 +151,27 @@ def extract_via_jina(url: str) -> tuple[str, str]:
     head = text[:400]
     if "Target URL returned error" in head or "CAPTCHA" in head:
         return "", "jina: target blocked"
-    return text.strip(), ""
+    text = text.strip()
+    if is_junk(text):
+        return "", "jina: error or paywall page"
+    return text, ""
+
+
+def extract_via_jina(url: str) -> tuple[str, str]:
+    """Second try for pages that block direct requests from GitHub: the Jina
+    Reader service (r.jina.ai) fetches the page and returns plain text. If the
+    first try fails, it tries once more with Jina's headless-browser engine,
+    which gets past some bot checks. JINA_API_KEY (free at jina.ai) raises the
+    rate limit. USE_JINA=0 switches it off."""
+    if os.environ.get("USE_JINA", "1") == "0":
+        return "", "jina off"
+    text, note = _jina_once(url, None)
+    if len(text) >= PAGE_TEXT_MIN_CHARS:
+        return text, ""
+    text2, note2 = _jina_once(url, "browser")
+    if len(text2) >= PAGE_TEXT_MIN_CHARS:
+        return text2, ""
+    return text2 or text, f"{note}; browser: {note2}"
 
 
 def extract_from_page(url: str) -> tuple[str, str]:
@@ -187,11 +205,51 @@ def extract_from_page(url: str) -> tuple[str, str]:
     return text, ("" if len(text) >= PAGE_TEXT_MIN_CHARS else "page text too short")
 
 
+def truncate_bytes(text: str, limit: int = MAX_CONTENT_BYTES) -> str:
+    """Cap text at `limit` UTF-8 bytes, marker included. Never splits a character.
+    Chinese characters are 3 bytes each, so a Chinese cell holds about 2,700 of them.
+    Cuts at the last paragraph or sentence end when one is near the limit."""
+    raw = text.encode("utf-8")
+    if len(raw) <= limit:
+        return text
+    budget = limit - len(TRUNCATION_MARK.encode("utf-8"))
+    cut = raw[:budget].decode("utf-8", errors="ignore")
+    floor = int(len(cut) * 0.85)
+    best = max(cut.rfind(m, floor) + len(m) - 1 if cut.rfind(m, floor) != -1 else -1
+               for m in ("\n", ". ", "。", "！", "？", "! ", "? "))
+    if best > 0:
+        cut = cut[: best + 1]
+    return cut.rstrip() + TRUNCATION_MARK
+
+
+def _fallback(a: dict, partial: str) -> None:
+    """Full text not retrieved. The short description has its own column, so the
+    content cell holds only the tag, plus any partial text longer than the description."""
+    teaser = (a.get("summary") or "").strip()
+    partial = (partial or "").strip()
+    if partial and partial != teaser and len(partial) > len(teaser) + 50:
+        _finish(a, FALLBACK_TAG + partial, "fallback")
+    else:
+        _finish(a, FALLBACK_TAG.strip(), "fallback")
+
+
 def _finish(a: dict, text: str, status: str) -> None:
-    if len(text) > MAX_CONTENT_CHARS:
-        text = text[:MAX_CONTENT_CHARS].rstrip() + " [TRUNCATED]"
+    text = truncate_bytes(text)
     a["content"] = text
     a["content_status"] = status
+
+
+_JUNK = re.compile(
+    r"403 ERROR|The request could not be satisfied|Request blocked|Access Denied|"
+    r"Just a moment|Enable JavaScript|No lock-in contract|Subscribe to continue|"
+    r"Sign in to (?:continue|read)|Attention Required",
+    re.IGNORECASE,
+)
+
+
+def is_junk(text: str) -> bool:
+    """Error pages and subscription promos that look like text but are not the article."""
+    return bool(_JUNK.search((text or "")[:700]))
 
 
 def looks_like_article(text: str, title: str) -> bool:
@@ -229,16 +287,22 @@ def enrich_one(a: dict) -> None:
             # Decoding failed. Last resort: let Jina open the Google link, which
             # redirects to the publisher. Accept only if the text matches the headline.
             jtext, jnote = extract_via_jina(url)
+            if is_junk(jtext):
+                jtext = ""
             if len(jtext) >= PAGE_TEXT_MIN_CHARS and looks_like_article(jtext, a.get("title", "")):
                 _finish(a, jtext, "full_page")
             else:
                 a["content_note"] = f"{note}; {jnote or 'jina text did not match headline'}"
-                _finish(a, FALLBACK_TAG + (feed_text or teaser), "fallback")
+                _fallback(a, feed_text)
             return
 
     text, note = extract_from_page(url)
+    if is_junk(text):
+        text, note = "", "page was an error or paywall notice"
     if len(text) < PAGE_TEXT_MIN_CHARS and len(feed_text) < PAGE_TEXT_MIN_CHARS:
         jtext, jnote = extract_via_jina(url)
+        if is_junk(jtext):
+            jtext, jnote = "", "jina returned an error or paywall notice"
         if len(jtext) >= PAGE_TEXT_MIN_CHARS:
             text, note = jtext, ""
         else:
@@ -250,7 +314,7 @@ def enrich_one(a: dict) -> None:
         _finish(a, feed_text, "full_feed")
     else:
         a["content_note"] = note or "no text found"
-        _finish(a, FALLBACK_TAG + (text or feed_text or teaser), "fallback")
+        _fallback(a, text or feed_text)
 
 
 def enrich_articles(articles: list[dict]) -> dict[str, int]:
@@ -260,9 +324,8 @@ def enrich_articles(articles: list[dict]) -> dict[str, int]:
         try:
             enrich_one(a)
         except Exception as e:  # keep the run alive
-            best = a.get("feed_content") or a.get("summary") or ""
             a["content_note"] = f"error {type(e).__name__}"
-            _finish(a, FALLBACK_TAG + best, "fallback")
+            _fallback(a, a.get("feed_content") or "")
             print(f"  ! content error for {a.get('url')}: {e}")
 
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
