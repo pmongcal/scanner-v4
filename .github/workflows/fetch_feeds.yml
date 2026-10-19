@@ -2,19 +2,17 @@ name: Scanner V4 Fetch RSS Feeds
 
 on:
   schedule:
-    # 22:37 UTC = 06:37 in the Philippines. The run takes 10 to 30 minutes and
-    # emails at the end, so it starts early to land by 07:00. The odd minute
-    # avoids the top of the hour, when GitHub delays scheduled runs.
+    # 22:37 UTC = 06:37 Manila time (UTC+8)
     - cron: "37 22 * * *"
   workflow_dispatch:
     inputs:
       retest:
-        description: "Retest: treat every article as new and email the full set (does not change saved state)"
+        description: "Retest: treat every article as new (ignores seen list, does not save it). Leave unticked for normal runs."
         type: boolean
         default: false
 
 permissions:
-  contents: write
+  contents: write  # needed to commit the articles.json back to the repo
 
 concurrency:
   group: fetch-feeds
@@ -46,6 +44,9 @@ jobs:
         run: python fetch_feeds.py
 
       - name: Email digest to Gmail
+        # Always attempt to email, even if aggregator exited non-zero.
+        # Sends everything in pending_digest.json and clears it only on success,
+        # so a failed send goes out with the next run instead of being lost.
         if: always()
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
