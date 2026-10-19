@@ -4177,7 +4177,10 @@
     "4e3f41a522360221",
     "1a61abb0baa04d8e",
     "a5890b92c71e7953",
-    "84b89cdce685e9e4"
+    "84b89cdce685e9e4",
+    "e01ff0159ef1b834",
+    "9f4ec64f78874fbf",
+    "6d550bc687e7d45b"
   ],
   "Marketing Week": [
     "8a84e83e6c950aa3",
@@ -4781,7 +4784,12 @@
     "ec0f189f0b04dacc",
     "f1da4b6eb4e4c122",
     "39b6d838e3143428",
-    "35077eb2dc0b8d16"
+    "35077eb2dc0b8d16",
+    "395db747c62e0447",
+    "33da8aabe6e16f93",
+    "bbc76be5efc5dd0b",
+    "71e1590c6c971a33",
+    "f7927d5e5c8ab52e"
   ],
   "Hacker News": [
     "2e3168de0706246f",
@@ -5869,7 +5877,27 @@
     "3a9452c54f6fdbab",
     "aca39a43280b93ce",
     "1612854c5c91ac56",
-    "d5c12904d62ec934"
+    "d5c12904d62ec934",
+    "a09a3be4e5cc91f3",
+    "2a6ac23eb50f0535",
+    "ae6e49210029e41a",
+    "3e28c483fe65e118",
+    "57743babc5756b42",
+    "176b32e067f2fd33",
+    "49bb7688995bb741",
+    "9e8247d936d87c46",
+    "b2a292a283602475",
+    "f62fed20b13b1ce7",
+    "3a7394738126a24f",
+    "956d462d69506633",
+    "2e922566bc37bbc5",
+    "9cfb32e12442763b",
+    "fdd85822d02d0b6a",
+    "56ddeb4dc142762f",
+    "0e1c32a585dd4e05",
+    "69ea77dfc1c584eb",
+    "61e3a85bb7785ed7",
+    "89b953781e117750"
   ],
   "The Drum": [
     "e8bc73828b047e76",
@@ -6579,7 +6607,17 @@
     "b437462ca3e1db12",
     "b31543fcd7d1501b",
     "5a085879e93b8577",
-    "742b811341ce80f2"
+    "742b811341ce80f2",
+    "4615586fa44617cf",
+    "f8740cf8c54e30f2",
+    "3cf4d945cff63c95",
+    "feaf69e12ce5e3bb",
+    "3a7eaf979be55568",
+    "cea7651d1685c8de",
+    "81cc485622695eab",
+    "347fe00b6f02ad3a",
+    "cc10eba0630c01bf",
+    "30168ad36b6a9c9c"
   ],
   "Wired": [
     "06fac07fe464d98c",
@@ -6922,7 +6960,14 @@
     "9f5b1b980a793cf1",
     "186640425f632aa0",
     "5b8f7c06c9afe946",
-    "b767546f449dada8"
+    "b767546f449dada8",
+    "f558eaf2a82dcbb5",
+    "de5ff6f54f5c0546",
+    "452021bb30da092a",
+    "99db1eb3cd6b5817",
+    "1d1a96896d57f899",
+    "8c53bca09a49f3aa",
+    "4c0911cabb051840"
   ],
   "Ars Technica AI": [
     "e0c2c3b234b29213",
@@ -6981,7 +7026,8 @@
     "5b95b356b53e30b5",
     "b3c5710f804248e2",
     "96acdef40d3eeadb",
-    "a9bac7249b15a7a1"
+    "a9bac7249b15a7a1",
+    "3055ac5eec49bd6d"
   ],
   "MIT Technology Review": [
     "b038c5d27cf0b7ba",
@@ -7186,7 +7232,12 @@
     "f16ce144fa9f2c53",
     "f5dccc4d6bc69707",
     "824481b12f4e9ff5",
-    "0ed42d397b2c7d14"
+    "0ed42d397b2c7d14",
+    "08bf0319c82f69c0",
+    "69c118268d9ba846",
+    "b3c546d04c40dfe6",
+    "510701874f6048fb",
+    "6ae88ab4e4d0daf0"
   ],
   "AI Snake Oil": [
     "71ca1585843bc87e",
@@ -8098,7 +8149,8 @@
     "72f6f0e5e1d3977c",
     "f970f59ba2918c18",
     "d3c2a0e39f187d60",
-    "4cd8d8172bffa5bc"
+    "4cd8d8172bffa5bc",
+    "2e4a8ef4e9f9022a"
   ],
   "Bloomberg Technology": [
     "7ef96033fe02156f",
@@ -8447,7 +8499,18 @@
     "79c8fce7d9a6247f",
     "b76955e27b6d74f8",
     "800411ef6d59cc67",
-    "94a3d84fed69f645"
+    "94a3d84fed69f645",
+    "2de0fcf394ab4500",
+    "24d15b45fcd8954c",
+    "f5ac6830c5bd6e2b",
+    "b54344f6da0e4cd0",
+    "063c67a3e8b553a8",
+    "b0c3dea3fa020811",
+    "80359ea15e66c32d",
+    "53b12e52d55c1554",
+    "81533b722819e9cd",
+    "81cd0867def89f9c",
+    "86f80c04fd8ec0e3"
   ],
   "Digiday": [
     "97307bcc63db3ef5",
@@ -9075,7 +9138,13 @@
     "b81ea81ab8aa8d27",
     "fa952fc84bd5d958",
     "d623eb83a4eb0a85",
-    "920693cff2d0ad10"
+    "920693cff2d0ad10",
+    "e8315b8c436527b9",
+    "d7657b6e6b4060c1",
+    "17c8a68ea09326a3",
+    "c09c2611a1f69d9f",
+    "c821af855481aeb3",
+    "0ada98e93a9287df"
   ],
   "Harvard Business Review": [
     "a47e07ece65300c1",
@@ -10003,7 +10072,27 @@
     "4882117cf8352190",
     "16b0322fcc1c25f4",
     "726894e54d1b8409",
-    "a5e1ddf920121b6b"
+    "a5e1ddf920121b6b",
+    "451da79faa4b38f1",
+    "e1099bdbe2fc4cdf",
+    "a8f5e98cf6562851",
+    "5079a56238ed042f",
+    "7c3a6a0801974db5",
+    "68ebdff0b778cf2c",
+    "8c0a6d8c0bbe3971",
+    "648e9e1a04863577",
+    "40cb1daa11461b6b",
+    "f70d5300e0afc41f",
+    "189d42e4ee492c99",
+    "4d7bb8c084ef9218",
+    "2f9d81e350f1485a",
+    "e0010b43aa5ad84b",
+    "ea9f496905c50539",
+    "8cf41c118c2476f8",
+    "b2890bb42f8496dd",
+    "70431059ec1a8fb6",
+    "a0750f46f6906947",
+    "08ef6a5b958cc4fc"
   ],
   "r/digital_marketing": [
     "6299104e044f4488",
@@ -10092,7 +10181,8 @@
     "da013184b38c8601",
     "17abef596d63951a",
     "932eac7e5e6125b5",
-    "0e39be226a740422"
+    "0e39be226a740422",
+    "836155364eea6a04"
   ],
   "Google News — Business AU": [
     "59d56182cb7689ca",
@@ -24122,5 +24212,31 @@
     "t:ffacc2302b50a148",
     "t:ffd65f6368766ed9",
     "t:fff1eff0937fe47a"
+  ],
+  "r/artificial": [
+    "7982ba39775d988c",
+    "50fdab8a6b14d66e",
+    "0aa66c678833ed48",
+    "bd53836d0c9a971d",
+    "92507c9c34d5c7ca",
+    "da2fd964e6b980e9",
+    "ec9e4d32f5d79557",
+    "151cd5f6c7f9acc5",
+    "87caa2208f5ca617",
+    "99be16ba6893d082",
+    "df8c44f8183df0c1",
+    "b40dd076a08edff0",
+    "0a7a01ee76af9545",
+    "215cbf212809da40",
+    "4f11afaf46312e9c",
+    "bf63a482c2ba160b",
+    "da746bd65cd09892",
+    "bf5d0b47187dd021",
+    "c6236d4be002218c",
+    "06aae67ca1f67f67",
+    "b32e8cedda08cd08",
+    "244b5b3241a5cd67",
+    "ba50123bc9067161",
+    "f3759a015d6230a9"
   ]
 }
